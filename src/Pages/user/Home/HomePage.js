@@ -16,8 +16,10 @@ const HomePage = () => {
                 <div className="home-button">
                     {/* <div>Must Try</div> */}
                     <div className='banner'>
-                        <img src={banner} alt=""/>
-                        {/* <img src={banner2} alt=""/> */}
+                        <a href="/post">
+                            <img src={banner} alt=""/>
+                            {/* <img src={banner2} alt=""/> */}
+                        </a>
                     </div>
                 </div>
             </div>

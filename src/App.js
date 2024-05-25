@@ -4,8 +4,9 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Category from './Pages/user/shop/Category';
 import Product from './Pages/user/shop/Product';
 import CartShop from './Pages/user/shop/CartShop';
-import Shop from './Pages/user/shop/Shop';
 import LoginPage from './Pages/user/LoginPage';
+import Shop from './Pages/user/shop/Shop';
+
 
 function App() {
   return (
