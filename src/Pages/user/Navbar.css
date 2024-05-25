@@ -1,0 +1,102 @@
+.navbar{
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    box-shadow: 0 1px 3px -2px black;
+}
+.navbar-logo{
+    display:  flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo p{
+    color: #171717;
+    font-size: 40px;
+    font-weight: 600;
+}.navbar {
+    display: flex;
+    justify-content: space-around;
+    padding: 16px;
+    box-shadow: 0 1px 3px -2px black;
+}
+
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.navbar-logo img {
+    width: 150px; /* Thay đổi kích thước logo tại đây */
+    height: auto; /* Giữ tỉ lệ khung hình của logo */
+}
+
+.navbar-logo p {
+    color: #171717;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
+    font-size: 18px;
+}
+
+.navbar-menu li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    cursor: pointer;
+}
+.navbar-menu hr{
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 20px;
+    background: black;
+}
+
+.navbar-login {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.navbar-login button {
+    width: 90px;
+    height: 50px;
+    outline: none;
+    border: 1px solid #6b6b6b;
+    border-radius: 20px;
+    color: black;
+    font-size: 20px;
+    font-weight: 400;
+    background: white;
+    cursor: pointer;
+}
+.navbar-login button:active{
+    background: #cbcbcb;
+}
+.icon-shopping{
+    font-size: 30px;
+    color: black;
+}
+.cart-count{
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -35px;
+    margin-left: -60px;
+    border-radius: 10px;
+    font-size: 15px;
+    background: rgb(163, 0, 0);
+    color: white;
+}
