@@ -1,5 +1,6 @@
 .item{
-    width: 350px;
+    width: 250px;
+    margin-top: 10px;
 }
 .item img{
     width: 100%;
@@ -16,7 +17,7 @@
 .item-price{
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 10px;
     width: 100%;
 }
 .item-new-price{

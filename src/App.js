@@ -6,6 +6,8 @@ import Product from './Pages/user/shop/Product';
 import CartShop from './Pages/user/shop/CartShop';
 import LoginPage from './Pages/user/LoginPage';
 import Shop from './Pages/user/shop/Shop';
+import MailRecommend from './Pages/user/Home/MailRecommend';
+import Footer from './Pages/user/Home/Footer';
 
 
 function App() {
@@ -18,13 +20,15 @@ function App() {
         <Route path='/post' element={<Category category="post"/>}/>
         <Route path='/coffee' element={<Category category="coffee"/>}/>
         <Route path='/fruit' element={<Category category="fruit"/>}/>
-        <Route path='/fns' element={<Category category="fns1"/>}/>
+        <Route path='/fns' element={<Category category="fns"/>}/>
         <Route path="/product" element={<Product/>}>
           <Route path='productId' element={<Product/>}/>
         </Route>
         <Route path='/cart' element={<CartShop/>}/>
         <Route path='/login' element={<LoginPage/>}/>
       </Routes>
+      <MailRecommend/>
+      <Footer/>
       </BrowserRouter>
       
     </div>

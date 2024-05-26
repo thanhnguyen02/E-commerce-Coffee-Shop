@@ -1,0 +1,49 @@
+.footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    gap: 10px;
+    background-color: #fffefe;
+}
+.footer-logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    p{
+        color: #383838;
+        font-size: 46px;
+        font-weight: 700;
+    }
+
+
+}
+.footer-link{
+    display: flex;
+    list-style: none;
+    gap: 40px;
+    color: #252525;
+    font-size: 20px;
+    
+}
+.footer-link li{
+    cursor: pointer;
+}
+.footer-icon{
+    display: flex;
+    gap: 5px;
+}
+.icon-container{
+    padding: 10px;
+    padding-bottom: 10px;
+    background: white;
+    border: 1px solid white;
+    transition: transform 0.3s;
+}
+.icon-container svg { /* Đảm bảo các biểu tượng được phóng to */
+    width: 40px; /* Điều chỉnh kích thước biểu tượng */
+    height: 40px; /* Điều chỉnh kích thước biểu tượng */
+    color: #252525; /* Màu biểu tượng */
+}
