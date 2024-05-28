@@ -1,0 +1,100 @@
+.cartshop{
+    margin: 100px 170px;
+
+    hr{
+        height: 3px;
+        background: white;
+        border: 0;
+    }
+}
+.cart-main{
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    gap: 75px;
+    padding: 20px 0px;
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+}
+.cartitem-format{
+    font-size: 17px;
+    font-weight: 500;
+}
+.cart-icon{
+    height: 140px;
+}
+.quantity {
+    margin-left: 25px;
+}
+.total{
+    margin-left: 25px;
+}
+.addandremove{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    cursor: pointer;
+    font-size: 24px;
+}
+.cart-below{
+    display: flex;
+    margin: 100px 0px;
+}
+.total2{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-right: 200px;
+    gap: 40px;
+}
+.total-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 0px;
+}
+.button-total{
+    width: 260px;
+    height: 60px;
+    outline: none;
+    border: none;
+    background: rgb(214, 128, 128);
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 1000px;
+}
+.button-dis{
+    width: 100px;
+    height: 40px;
+    margin-left: 15px;
+    border-radius: 10px;
+    color: black;
+    background: rgb(199, 199, 199) ;
+}
+.cart-codediscount{
+    flex: 1;
+    font-size: 15px;
+    font-weight: 500;
+}
+.cart-codediscount p{
+    color: rgb(80, 80, 80);
+}
+.boxdiscount{
+    width: 500px;
+    margin-top: 15px;
+    height: 60px;
+    background: white;
+}
+.boxdiscount input{
+    border: 1px solid #8f8f8f;
+    outline: none;
+    color: #5c5c5c;
+    border-radius: 10px;
+    background: transparent;
+    font-size: 15px;
+    width: 350px;
+    height: 40px;
+}

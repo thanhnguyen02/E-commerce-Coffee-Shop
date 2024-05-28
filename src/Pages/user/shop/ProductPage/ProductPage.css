@@ -1,0 +1,84 @@
+.productpage {
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 170px;
+}
+
+.productpage-left {
+    display: flex;
+    margin-top: 50px;
+    margin-bottom: 100px;
+    width: 50%; /* Chia nửa trái */
+    justify-content: center;
+    align-items: center;
+}
+
+.productpage-img img {
+    width: 100%; /* Đảm bảo ảnh vừa với nửa trái */
+    max-width: 380px; /* Giới hạn kích thước tối đa */
+    height: auto;
+}
+
+.productpage-right {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    width: 50%; /* Chia nửa phải */
+}
+
+.productpage-star {
+    display: flex;
+    gap: 5px;
+}
+
+.productpage-price {
+    display: flex;
+    gap: 10px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: gray;
+}
+
+/* .productpage-price .new-price {
+    font-weight: bold;
+    color: red;
+} */
+
+.product-mota {
+    margin: 20px 0;
+}
+
+.product-size {
+    margin: 20px 0;
+}
+
+.product-size .size {
+    display: flex;
+    gap: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: rgb(136, 213, 255);
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(91, 176, 255);
+}
+
+.add-category {
+    margin-top: 10px;
+    font-style: italic;
+    color: gray;
+}
+.size div{
+    padding: 10px 15px;
+    background: white;
+    border: 1px solid rgb(166, 166, 166);
+    border-radius: 10px;
+    cursor: pointer;
+}

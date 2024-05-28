@@ -10,14 +10,14 @@ import png26 from './png26.jpg'
 let fns_product = [   
     {
         id:1,
-        name: "Trà dâu",
+        name: "Sunrise Kiwi",
         image: png20,
         new_price: 45.000,
         old_price: 55.000,
     },
     {
         id:2,
-        name: "Trà chanh việt quất",
+        name: "Sunrise Lychee",
         image: png21,
         new_price: 50.000,
         old_price: 55.000,
@@ -36,7 +36,7 @@ let fns_product = [
     },
     {
         id:5,
-        name: "Trà chanh việt quất",
+        name: "Sunset Peach",
         image: png24,
         new_price: 50.000,
         old_price: 55.000,
@@ -48,7 +48,7 @@ let fns_product = [
         old_price: 50.000,
     },
     {id:7,
-        name: "Táo dứa xoài",
+        name: "Sunset Calamansi",
         image: png26,
         new_price: 40.000,
         old_price: 55.000,

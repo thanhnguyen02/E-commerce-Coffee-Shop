@@ -12,11 +12,11 @@ const Footer = () => {
         <p>AVENKATI</p>
       </div>
       <ul className='footer-link'>
-        <li>Gioi thieu</li>
-        <li>Thong tin</li>
-        <li>Cua hang</li>
-        <li>Lien he</li>
-        <li>Co hoi nghe nghiep</li>
+        <li>Giới thiệu</li>
+        <li>Thông tin</li>
+        <li>Cửa hàng</li>
+        <li>Liên hệ</li>
+        <li>Cơ hội nghề nghiệp</li>
       </ul>
       <div class="footer-icon">
         <div class="icon-container">
@@ -31,7 +31,7 @@ const Footer = () => {
       </div>
       <div class="footer-copyright">
         <hr/>
-        <p style={{fontSize:'15px'}}>Copyright by Luca</p>
+        <p className='cpbl'>Copyright by Luca</p>
       </div>
     </div>
   )

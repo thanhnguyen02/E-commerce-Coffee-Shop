@@ -1,0 +1,24 @@
+.recommend{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    height: 90vh;
+
+    h1{
+        font-size: 45px;
+        font-weight: 600;
+    }
+    
+}
+.recommend hr{
+    width: 500px;
+    height: 5px;
+    border-radius: 5px;
+    background: rgb(44, 44, 44);
+}
+.recommend-item{
+    margin-top: 50px;
+    display: flex;
+    gap: 80px;
+}

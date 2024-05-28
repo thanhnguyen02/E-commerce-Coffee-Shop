@@ -3,29 +3,37 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    gap: 10px;
-    background-color: #fffefe;
+    padding: 10px;
+    gap: 5px;
+    background: linear-gradient(180deg, rgb(219, 219, 219) 0%, #e1ffea22 60%);
 }
 .footer-logo{
     display: flex;
     align-items: center;
     gap: 10px;
-
+    img {
+        width: 150px; 
+        height: 120px; 
+    }
     p{
         color: #383838;
-        font-size: 46px;
-        font-weight: 700;
+        font-size: 35px;
+        font-weight: 600;
     }
-
-
+}
+.footer hr {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background-color: #9f9f9f;
+    margin: 0 0;
 }
 .footer-link{
     display: flex;
     list-style: none;
     gap: 40px;
     color: #252525;
-    font-size: 20px;
+    font-size: 18px;
     
 }
 .footer-link li{
@@ -34,16 +42,21 @@
 .footer-icon{
     display: flex;
     gap: 5px;
+    cursor: pointer;
 }
 .icon-container{
     padding: 10px;
     padding-bottom: 10px;
     background: white;
-    border: 1px solid white;
+    border: 5px solid white;
     transition: transform 0.3s;
 }
-.icon-container svg { /* Đảm bảo các biểu tượng được phóng to */
-    width: 40px; /* Điều chỉnh kích thước biểu tượng */
-    height: 40px; /* Điều chỉnh kích thước biểu tượng */
-    color: #252525; /* Màu biểu tượng */
+.icon-container svg { 
+    width: 40px; 
+    height: 40px; 
+    color: #252525; 
+}
+.cpbl{
+    font-size: 13px;
+    margin-bottom: 0%;
 }
