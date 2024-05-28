@@ -69,13 +69,13 @@
 }
 
 .navbar-login button {
-    width: 90px;
+    width: 115px;
     height: 50px;
     outline: none;
     border: 1px solid #6b6b6b;
     border-radius: 20px;
     color: black;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: 400;
     background: white;
     cursor: pointer;
@@ -94,9 +94,31 @@
     justify-content: center;
     align-items: center;
     margin-top: -35px;
-    margin-left: -60px;
+    margin-left: -45px;
     border-radius: 10px;
     font-size: 15px;
     background: rgb(163, 0, 0);
     color: white;
+}
+@media(max-width:1280px){
+    .navbar{
+        padding: 12px 50px;
+    }
+    .navbar-menu{
+        gap: 30px;
+        font-size: 16px;
+    }
+    .navbar-login{
+        gap: 30px;
+    }
+    .navbar-login button{
+        width: 120px;
+        height: 45px;
+        font-size: 15px;
+    }
+    .cart-count{
+        margin-left: -40px;
+        font-size: 12px;
+    }
+
 }

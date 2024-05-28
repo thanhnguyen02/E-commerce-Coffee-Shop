@@ -1,5 +1,5 @@
-import logo from "./logo.jpg";
-import banner from "./banner.jpg";
+// import logo from "./logo.jpg";
+// import banner from "./banner.jpg";
 import png12 from "./png12.jpg";
 import png13 from "./png13.jpg";
 import png14 from "./png14.jpg";
@@ -23,7 +23,7 @@ import png37 from "./png37.jpg";
 let all_img = [
     {
         id:1,
-        name: "",
+        name: "Ca phe nau",
         category:"coffee",
         image: png12,
         new_price: 35.000,
@@ -31,7 +31,7 @@ let all_img = [
     },
     {
         id:2,
-        name: "",
+        name: "Bac xiu",
         category:"coffee",
         image: png13,
         new_price: 35.000,
@@ -39,7 +39,7 @@ let all_img = [
     },
     {
         id:3,
-        name: "",
+        name: "Ca phe cot dua",
         category:"coffee",
         image: png14,
         new_price: 35.000,
@@ -56,7 +56,7 @@ let all_img = [
     {
         id:5,
         name: "",
-        category:"coffee",
+        category:"fruit",
         image: png20,
         new_price: 35.000,
         old_price: 55.000,
@@ -64,9 +64,114 @@ let all_img = [
     {
         id:6,
         name: "",
-        category:"coffee",
+        category:"fruit",
         image: png21,
         new_price: 35.000,
         old_price: 55.000,
     },
+    {
+        id:7,
+        name: "Ca phe nau",
+        category:"fruit",
+        image: png22,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:8,
+        name: "Bac xiu",
+        category:"fruit",
+        image: png23,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:9,
+        name: "Ca phe cot dua",
+        category:"fruit",
+        image: png24,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:10,
+        name: "",
+        category:"fruit",
+        image: png25,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:11,
+        name: "",
+        category:"fruit",
+        image: png26,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:12,
+        name: "",
+        category:"fns",
+        image: png30,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:13,
+        name: "",
+        category:"fns",
+        image: png31,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:14,
+        name: "Ca phe nau",
+        category:"fns",
+        image: png32,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:15,
+        name: "Bac xiu",
+        category:"fns",
+        image: png33,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:16,
+        name: "Ca phe cot dua",
+        category:"fns",
+        image: png34,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:17,
+        name: "",
+        category:"fns",
+        image: png35,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:18,
+        name: "",
+        category:"fns",
+        image: png36,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
+    {
+        id:19,
+        name: "",
+        category:"fns",
+        image: png37,
+        new_price: 35.000,
+        old_price: 55.000,
+    },
 ];
+export default all_img;

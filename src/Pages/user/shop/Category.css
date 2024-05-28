@@ -1,0 +1,31 @@
+
+.category-banner {
+    display: block;
+    width: 80%;
+    /* max-width: 100px;  */
+    margin: 0 auto;
+    overflow: hidden; /* Optional if you want to ensure no overflow happens */
+    text-align: center; /* Center align the content inside */
+}
+.category {
+    width: 100%;
+}
+.category-banner img {
+    width: 100%; /* Scale the image to fit within its container */
+    height: auto; /* Maintain the aspect ratio */
+}
+.shopcategory{
+    /* display: flex;
+    flex-direction: column;
+    margin: 30px 260px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 50px; */
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 50px;
+    width: 80%; /* Adjust this width as needed */
+    max-width: 900px; /* Adjust this max-width as needed */
+    margin: 60px auto;
+    
+}
