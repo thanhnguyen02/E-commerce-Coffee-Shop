@@ -1,0 +1,23 @@
+.fruit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom:0;
+    margin-top: 50px;
+
+    h1{
+        color: black;
+        margin-top: 10px;
+        margin-bottom: 0%;
+        font-size: 30px;
+        font-weight: 550;}
+
+    hr{
+        width: 500px;
+        height: 0.5px;
+        border-radius: 10px;
+        background: #252525;
+        margin-bottom: 0%;
+    }
+}
