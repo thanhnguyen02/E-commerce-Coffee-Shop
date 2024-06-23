@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './HomePage.css'
 import banner from '../../img/banner.jpg'
 import banner2 from '../../img/banner2.jpg'
@@ -8,10 +8,6 @@ const HomePage = () => {
     <div className='homepage'>
         <div className="home-left">
             <h2 >WHAT'S NEW TODAY</h2>
-            <div>
-                {/* <p>collection</p>
-                <p>for everyone</p> */}
-            </div>
             <div>
                 <div className="home-button">
                     {/* <div>Must Try</div> */}

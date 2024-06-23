@@ -8,13 +8,14 @@ const CartShop = () => {
     const{getTotalCart,all_img,cartItem,addToCart ,removeToCart}=useContext(ShopContext)
   return (
     <div className='cartshop'>
+      <h2>Giỏ hàng của bạn</h2>
       <div class="cart-main">
-        <p>San pham</p>
-        <p>Ten san pham</p>
-        <p>Gia tien</p>
-        <p>So luong</p>
-        <p>Tong tien</p>
-        <p>Xoa</p>
+        <p>Sản phẩm</p>
+        <p>Tên sản phẩm</p>
+        <p>Giá tiền</p>
+        <p>Số lượng</p>
+        <p>Thành tiền</p>
+        <p>Thao tác</p>
       </div>
       <hr/>
       {all_img.map((i)=>{
@@ -23,9 +24,9 @@ const CartShop = () => {
               <div class="cartitem-format cart-main">
                 <img src={i.image} alt="" className='cart-icon'/>
                 <p>{i.name}</p>
-                <p>{i.new_price} VNĐ</p>
+                <p>{parseFloat(i.new_price).toFixed(3)} VNĐ</p>
                 <p className='quantity'>{cartItem[i.id]}</p>
-                <p className='total1'>{i.new_price*cartItem[i.id]} VNĐ</p>
+                <p className='total1'>{(parseFloat(i.new_price).toFixed(3) * cartItem[i.id]).toFixed(3)} VNĐ</p>
                 <div className='addandremove'>
                     <div className='icon-add' onClick={()=>{addToCart(i.id)}}><CiCirclePlus /></div>
                     <div className='icon-remove' onClick={()=>{removeToCart(i.id)}}><IoIosRemoveCircleOutline /></div>
@@ -41,18 +42,18 @@ const CartShop = () => {
           <h1>Tong hoa don</h1>
           <div>
             <div class="total-item">
-              <p>Subtatal</p>
-              <p>{getTotalCart()} VND</p>
+              <p> Tổng tiền sản phẩm</p>
+              <p>{getTotalCart().toFixed(3)} VND</p>
             </div>
             <hr />
             <div class="total-item">
-              <p>shipping free</p>
+              <p>Phụ thu</p>
               <p>free</p>
             </div>
             <hr/>
             <div class="total-item">
               <h3>Tong</h3>
-              <h3>{getTotalCart()} VND</h3>
+              <h3>{getTotalCart().toFixed(3)} VND</h3>
             </div>
             <div class="cart-codediscount">
               <p>neu ban co ma giam gia, nhap tai day</p>

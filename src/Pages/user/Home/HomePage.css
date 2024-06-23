@@ -25,7 +25,7 @@
 .banner {
     max-width: calc(100% - 200px); 
     max-height: 50vh;
-    margin: 0 auto;
+    margin-bottom: 100px;
 }
 .banner img{
     width: 100%;

@@ -21,11 +21,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 50px; */
+    text-align: center;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 50px;
-    width: 80%; /* Adjust this width as needed */
+    grid-template-columns: repeat(3,1fr);
+    gap: 70px;
+    width: 100%; /* Adjust this width as needed */
     max-width: 900px; /* Adjust this max-width as needed */
-    margin: 60px auto;
-    
+    margin: 30px auto;
+    justify-items: center;
 }

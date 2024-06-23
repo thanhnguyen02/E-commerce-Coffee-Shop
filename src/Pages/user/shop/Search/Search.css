@@ -1,0 +1,79 @@
+.search-bar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-bar input {
+    padding: 10px;
+    font-size: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 10px;
+}
+.search-input {
+    position: relative;
+}
+.search-input input {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
+    margin-right: 0px; /* Để chứa button tìm kiếm */
+}
+
+.search-input button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 10px;
+    border: none;
+    border-radius: 20px;
+    background-color: #171717;
+    color: white;
+    cursor: pointer;
+}
+.search-bar button {
+    padding: 10px 20px;
+    font-size: 14px;
+    border: none;
+    border-radius: 20px;
+    background-color: #171717;
+    color: white;
+    cursor: pointer;
+}
+
+.product-card {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+}
+.search-result-page {
+    max-width: 900px; /* Giới hạn chiều rộng */
+    margin: 0 auto; /* Canh giữa trang */
+    padding: 0 20px; /* Padding bên trái và bên phải */
+}
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+.product-card h2 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.product-card p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+.search-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin-top: 50px;
+    gap: 20px;
+  }

@@ -15,16 +15,61 @@ const ShopContextProvider = (props) => {
 
     useEffect(() => {
         fetch('http://localhost:5000/allproduct')
-            .then((response) => response.json())
-            .then((data) => setAll_product(data.products)); // Lấy mảng sản phẩm từ dữ liệu trả về và gán cho all_img
+        .then((response) => response.json())
+        .then((data) => setAll_product(data.products)); // Lấy mảng sản phẩm từ dữ liệu trả về và gán cho all_img
+
+        if(localStorage.getItem('auth-token')){
+            fetch('http://localhost:5000/getcart',{
+                method:'POST',
+                headers:{
+                    Accept:'application/form-data',
+                    'auth-token':`${localStorage.getItem('auth-token')}`,
+                    'Content-Type':'application/json',
+                },
+                body:"",
+            }).then((response)=>response.json())
+            .then((data)=>setCartItem(data));
+        }
     }, []);
 
     const addToCart = (itemId) => {
         setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    
+        const authToken = localStorage.getItem('auth-token');
+        if (authToken) {
+            fetch('http://localhost:5000/addtocart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': authToken,
+                    'Accept': 'application/json', 
+                },
+                body: JSON.stringify({ itemId: itemId }), // Chuyển đổi object thành JSON string
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error('Error:', error));
+        }
     };
+    
 
     const removeToCart = (itemId) => {
         setCartItem((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+        const authToken = localStorage.getItem('auth-token');
+        if (authToken) {
+            fetch('http://localhost:5000/removefromcart', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'auth-token': authToken,
+                    'Accept': 'application/json', // Thay đổi 'Accept' thành 'application/json'
+                },
+                body: JSON.stringify({ itemId: itemId }), // Chuyển đổi object thành JSON string
+            })
+            .then((response) => response.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.error('Error:', error));
+        }
     };
 
     const getQuantityCart = () => {

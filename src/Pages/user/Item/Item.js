@@ -9,10 +9,10 @@ const Item = (props) => {
       <p>{props.name}</p>
       <div className="item-price">
         <div className='item-new-price'>
-            {props.new_price} VNĐ
+        {parseFloat(props.new_price).toFixed(3)} VNĐ
         </div>
         <div className="item-old-price">
-            {props.old_price} VNĐ
+        {/* {parseFloat(props.old_price).toFixed(3)} VNĐ */}
         </div>
       </div>
     </div>

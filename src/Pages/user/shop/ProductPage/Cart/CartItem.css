@@ -1,9 +1,11 @@
 .cartshop{
-    margin: 100px 170px;
-
+    margin: 10px 170px;
+    h2{
+        font-size: 30px;
+    }
     hr{
         height: 3px;
-        background: white;
+        background: rgb(213, 213, 213);
         border: 0;
     }
 }
@@ -11,8 +13,8 @@
     display: grid;
     grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
     align-items: center;
-    gap: 75px;
-    padding: 20px 0px;
+    gap: 80px;
+    padding: 5px 0px;
     color: black;
     font-size: 18px;
     font-weight: 600;
@@ -58,7 +60,7 @@
     height: 60px;
     outline: none;
     border: none;
-    background: rgb(214, 128, 128);
+    background: rgb(196, 44, 44);
     color: white;
     font-size: 15px;
     font-weight: 600;

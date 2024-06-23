@@ -1,20 +1,4 @@
-.navbar{
-    display: flex;
-    justify-content: space-around;
-    padding: 16px;
-    box-shadow: 0 1px 3px -2px black;
-}
-.navbar-logo{
-    display:  flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.navbar-logo p{
-    color: #171717;
-    font-size: 40px;
-    font-weight: 600;
-}.navbar {
+.navbar {
     display: flex;
     justify-content: space-around;
     padding: 16px;
@@ -28,8 +12,8 @@
 }
 
 .navbar-logo img {
-    width: 150px; /* Thay đổi kích thước logo tại đây */
-    height: auto; /* Giữ tỉ lệ khung hình của logo */
+    width: 150px;
+    height: auto;
 }
 
 .navbar-logo p {
@@ -54,12 +38,27 @@
     gap: 1px;
     cursor: pointer;
 }
-.navbar-menu hr{
+
+.navbar-menu hr {
     border: none;
     width: 80%;
     height: 3px;
     border-radius: 20px;
     background: black;
+}
+
+.navbar-search {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.navbar-search input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    outline: none;
 }
 
 .navbar-login {
@@ -80,14 +79,17 @@
     background: white;
     cursor: pointer;
 }
-.navbar-login button:active{
+
+.navbar-login button:active {
     background: #cbcbcb;
 }
-.icon-shopping{
+
+.icon-shopping {
     font-size: 30px;
     color: black;
 }
-.cart-count{
+
+.cart-count {
     width: 20px;
     height: 20px;
     display: flex;
@@ -100,25 +102,28 @@
     background: rgb(163, 0, 0);
     color: white;
 }
-@media(max-width:1280px){
-    .navbar{
+
+@media (max-width: 1280px) {
+    .navbar {
         padding: 12px 50px;
     }
-    .navbar-menu{
+    .navbar-menu {
         gap: 30px;
         font-size: 16px;
     }
-    .navbar-login{
+    .navbar-login {
         gap: 30px;
     }
-    .navbar-login button{
+    .navbar-login button {
         width: 120px;
         height: 45px;
         font-size: 15px;
     }
-    .cart-count{
+    .cart-count {
         margin-left: -40px;
         font-size: 12px;
     }
-
+}
+.navbar-search{
+    padding-top: 20px;
 }

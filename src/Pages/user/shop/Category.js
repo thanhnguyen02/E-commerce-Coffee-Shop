@@ -1,19 +1,27 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Category.css';
 import { ShopContext } from './Context/ShopContext';
 import Item from '../Item/Item';
 
-const Category = (props) => {
+const Category = ({ category, banner, searchQuery }) => {
   const { all_img } = useContext(ShopContext);
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
-  // Lọc các sản phẩm theo danh mục
-  const filteredProducts = all_img.filter((item) => item.category === props.category);
+  useEffect(() => {
+    let products = all_img.filter((item) => item.category === category);
+    if (searchQuery) {
+      products = products.filter((item) =>
+        item.name.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    setFilteredProducts(products);
+  }, [all_img, category, searchQuery]);
 
   return (
     <div className='outer-container'>
       <div className='category'>
         <div className='category-banner'>
-          <img src={props.banner} alt='' />
+          <img src={banner} alt='' />
         </div>
         <div className='shopcategory'>
           {filteredProducts.map((item, i) => (
@@ -23,7 +31,7 @@ const Category = (props) => {
               name={item.name}
               image={item.image}
               new_price={item.new_price}
-              old_price={item.old_price}
+              //old_price={item.old_price}
             />
           ))}
         </div>

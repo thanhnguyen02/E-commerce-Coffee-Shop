@@ -5,6 +5,7 @@ import Fruit from './Fruit/Fruit'
 import FandS from './FnS/FandS'
 import MailRecommend from '../Home/MailRecommend'
 import Category from './Category'
+import "./Shop.css"
 
 
 const Shop = () => {
@@ -24,9 +25,13 @@ const Shop = () => {
         <hr />
         <Category category="fruit"/>
         
-        <h1>Soda n Fruit</h1>
+        <h1>Soda mix Fruit</h1>
         <hr />
         <Category category="fns"/>
+
+        <h1>Khác</h1>
+        <hr />
+        <Category category="other"/>
       </div>
     </div>
   )
