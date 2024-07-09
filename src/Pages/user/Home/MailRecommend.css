@@ -10,6 +10,7 @@
     margin-bottom:10px;
     background: linear-gradient(180deg, rgb(219, 219, 219) 0%, #e1ffea22 60%);
     gap: 10px;
+    z-index: 1000;
 
     h1{
         color: #454545;

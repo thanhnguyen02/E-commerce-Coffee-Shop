@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Post.css'; // Import file CSS
+import HomePage from '../Home/HomePage';
 
 const Post = () => {
     const [posts, setPosts] = useState([]);
@@ -15,7 +16,7 @@ const Post = () => {
             })
             .then(data => {
                 if (data.success === 1) {
-                    setPosts(data.post); // Đúng là data.post thay vì data.posts
+                    setPosts(data.post);
                 } else {
                     setError('Lỗi khi lấy bài viết: ' + data.message);
                 }
@@ -36,6 +37,7 @@ const Post = () => {
 
     return (
         <div className="post-container">
+            {/* <HomePage /> */}
             <h1 className="post-title">Bài viết</h1>
             {error ? (
                 <p className="error-message">{error}</p>

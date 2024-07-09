@@ -7,7 +7,7 @@ const HomePage = () => {
   return (
     <div className='homepage'>
         <div className="home-left">
-            <h2 >WHAT'S NEW TODAY</h2>
+            {/* <h2 >WHAT'S NEW TODAY</h2> */}
             <div>
                 <div className="home-button">
                     {/* <div>Must Try</div> */}

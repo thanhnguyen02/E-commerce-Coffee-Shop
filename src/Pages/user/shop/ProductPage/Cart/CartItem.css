@@ -1,61 +1,68 @@
-.cartshop{
-    margin: 10px 170px;
-    h2{
-        font-size: 30px;
-    }
-    hr{
-        height: 3px;
-        background: rgb(213, 213, 213);
-        border: 0;
-    }
+.cartshop {
+    margin: 10px 100px;
+    padding-top: 110px;
 }
-.cart-main{
+
+.cartshop h2 {
+    font-size: 30px;
+}
+
+.cart-main {
     display: grid;
-    grid-template-columns: 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(6,1fr);
+    width: 100%;
+    max-width: 1800px;
     align-items: center;
-    gap: 80px;
+    gap: 100px;
     padding: 5px 0px;
     color: black;
     font-size: 18px;
     font-weight: 600;
 }
-.cartitem-format{
-    font-size: 17px;
+
+.cartitem-format {
+    font-size: 20px;
     font-weight: 500;
 }
-.cart-icon{
+
+.cart-icon {
     height: 140px;
 }
+
 .quantity {
     margin-left: 25px;
 }
-.total{
-    margin-left: 25px;
-}
-.addandremove{
+
+
+
+.addandremove {
     display: flex;
     align-items: center;
     gap: 20px;
     cursor: pointer;
     font-size: 24px;
 }
-.cart-below{
+
+.cart-below {
     display: flex;
-    margin: 100px 0px;
+    justify-content: space-between;
+    margin: 50px 0px;
 }
-.total2{
+
+.total2 {
     flex: 1;
     display: flex;
     flex-direction: column;
-    margin-right: 200px;
-    gap: 40px;
+    margin-right: 50px;
 }
-.total-item{
+
+.total-item {
     display: flex;
     justify-content: space-between;
-    padding: 15px 0px;
+    padding: 0px 0px;
 }
-.button-total{
+
+.button-total {
     width: 260px;
     height: 60px;
     outline: none;
@@ -66,31 +73,35 @@
     font-weight: 600;
     cursor: pointer;
     margin-top: 50px;
-    margin-left: 1000px;
 }
-.button-dis{
+
+.button-dis {
     width: 100px;
     height: 40px;
     margin-left: 15px;
     border-radius: 10px;
     color: black;
-    background: rgb(199, 199, 199) ;
+    background: rgb(199, 199, 199);
 }
-.cart-codediscount{
+
+.cart-codediscount {
     flex: 1;
     font-size: 15px;
     font-weight: 500;
 }
-.cart-codediscount p{
+
+.cart-codediscount p {
     color: rgb(80, 80, 80);
 }
-.boxdiscount{
+
+.boxdiscount {
     width: 500px;
     margin-top: 15px;
     height: 60px;
     background: white;
 }
-.boxdiscount input{
+
+.boxdiscount input {
     border: 1px solid #8f8f8f;
     outline: none;
     color: #5c5c5c;
@@ -99,4 +110,34 @@
     font-size: 15px;
     width: 350px;
     height: 40px;
+}
+
+.shipping-form {
+    flex: 1;
+}
+
+.shipping-form h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.shipping-form input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.shipping-form button {
+    padding: 14px;
+    background-color: rgb(196, 44, 44);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 50px;
+    margin-left: 300px;
 }

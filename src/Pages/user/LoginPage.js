@@ -27,6 +27,7 @@ const LoginPage = () => {
     if (responseData.success) {
       localStorage.setItem('auth-token', responseData.token);
       window.location.replace("/");
+      localStorage.setItem('user-email', formData.email); // Save email to localStorage
     } else {
       alert(responseData.message || "Đăng nhập thất bại");
     }
@@ -47,6 +48,7 @@ const LoginPage = () => {
     if (responseData.success) {
       localStorage.setItem('auth-token', responseData.token);
       window.location.replace("/");
+      localStorage.setItem('user-email', formData.email); // Save email to localStorage
     } else {
       alert(responseData.message || "Đăng ký thất bại");
     }

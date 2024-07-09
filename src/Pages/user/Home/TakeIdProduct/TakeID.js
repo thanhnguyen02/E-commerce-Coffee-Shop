@@ -5,7 +5,7 @@ const TakeID = (props) => {
     const {product}=props;
   return (
     <div className='takeid' style={{margin: '10px 10px',fontSize:'12px'}}>
-      HOME <MdOutlineKeyboardArrowRight />SHOP <MdOutlineKeyboardArrowRight /> {product.category} <MdOutlineKeyboardArrowRight /> {product.name}
+      {/* HOME <MdOutlineKeyboardArrowRight />SHOP <MdOutlineKeyboardArrowRight /> {product.category} <MdOutlineKeyboardArrowRight /> {product.name} */}
     </div>
   )
 }

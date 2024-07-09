@@ -1,5 +1,5 @@
 .homepage{
-    height: 80vh;
+    height: 60vh;
     /* background: linear-gradient(180deg,white,black 60%); */
     display: flex;
 }
@@ -23,9 +23,9 @@
     align-items: center;
 }
 .banner {
-    max-width: calc(100% - 200px); 
+    margin-top: 0px;
+    max-width: calc(100% - 0px); 
     max-height: 50vh;
-    margin-bottom: 100px;
 }
 .banner img{
     width: 100%;

@@ -135,7 +135,7 @@ app.get('/product/:id', (req, res) => {
 
 // Lấy tất cả sản phẩm
 app.get('/allproduct', (req, res) => {
-    const sql = 'SELECT * FROM product';
+    const sql = 'SELECT * FROM product WHERE status LIKE "%on%"';
     
     dbConn.query(sql, (error, results) => {
         if (error) {
@@ -149,7 +149,7 @@ app.get('/allproduct', (req, res) => {
 
 app.post('/searchproduct', (req, res) => {
     const productName = req.body.name;
-    const sql = 'SELECT * FROM product WHERE name LIKE ? OR tag LIKE ?';
+    const sql = 'SELECT * FROM product WHERE (name LIKE ? OR tag LIKE ?) AND status NOT LIKE "%hide%"';;
 
     // Sử dụng wildcard để tìm kiếm theo tên sản phẩm
     const queryParam = `%${productName}%`;
@@ -168,7 +168,7 @@ app.post('/searchproduct', (req, res) => {
 
 
 app.get('/allpost', (req, res) => {
-    const sql = 'SELECT * FROM post';
+    const sql = 'SELECT * FROM post ORDER BY post_date DESC';
     
     dbConn.query(sql, (error, results) => {
         if (error) {
@@ -188,14 +188,44 @@ app.post('/addpost', (req, res) => {
 
     dbConn.query(sql, values, (error, results) => {
         if (error) {
-            console.error('Lỗi khi thêm sản phẩm:', error);
-            res.status(500).json({ success: 0, message: 'Lỗi khi thêm sản phẩm', error: error });
+            console.error('Lỗi khi thêm bài viết:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi thêm bài viết', error: error });
             return;
         }
-        res.status(200).json({ success: 1, message: 'Thêm sản phẩm thành công' });
+        res.status(200).json({ success: 1, message: 'Thêm bài viết thành công' });
     });
 });
-
+app.post('/mail', (req, res) => {
+    const { mail } = req.body;
+  
+    if (!mail) {
+      return res.status(400).json({ success: 0, message: 'Thiếu email' });
+    }
+  
+    // Kiểm tra xem email đã tồn tại chưa
+    const checkSql = 'SELECT * FROM mail_recommend WHERE mail = ?';
+    dbConn.query(checkSql, [mail], (error, results) => {
+      if (error) {
+        console.error('Lỗi khi kiểm tra Mail', error);
+        return res.status(500).json({ success: 0, message: 'Lỗi khi kiểm tra Mail', error: error });
+      }
+  
+      if (results.length > 0) {
+        return res.status(409).json({ success: 0, message: 'Email đã tồn tại' });
+      }
+  
+      // Nếu email chưa tồn tại, thực hiện chèn vào cơ sở dữ liệu
+      const insertSql = 'INSERT INTO mail_recommend (mail) VALUES (?)';
+      dbConn.query(insertSql, [mail], (error, results) => {
+        if (error) {
+          console.error('Lỗi khi lưu Mail', error);
+          return res.status(500).json({ success: 0, message: 'Lỗi khi lưu Mail', error: error });
+        }
+        res.status(200).json({ success: 1, message: 'Thêm Mail thành công' });
+      });
+    });
+  });
+  
 // Middleware để xác thực người dùng
 const fetchUser = async (req, res, next) => {
     const token = req.header('auth-token');
@@ -214,7 +244,6 @@ const fetchUser = async (req, res, next) => {
 //endpoint lay du lieu gio hang cua ng dung
 app.post('/getcart', fetchUser, (req, res) => {
     console.log("GetCart");
-
     // Lấy email của người dùng từ req.user
     const userEmail = req.user.email;
 
@@ -236,6 +265,67 @@ app.post('/getcart', fetchUser, (req, res) => {
     });
 });
 
+app.post('/bills', fetchUser, (req, res) => {
+    console.log("GetBills");
+    const userEmail = req.user.email; // Lấy email từ user đã xác thực
+
+    const selectSql = 'SELECT id_bill, id_product, total, payment_id, date, number, address, distric, status_bill FROM bills WHERE email = ?';
+    dbConn.query(selectSql, [userEmail], (err, results) => {
+        if (err) {
+            console.error('Lỗi truy vấn cơ sở dữ liệu:', err);
+            return res.status(500).json({ success: 0, message: 'Lỗi truy vấn cơ sở dữ liệu', error: err });
+        }
+        if (results.length > 0) {
+            try {
+                // Chuyển đổi id_product từ chuỗi JSON sang đối tượng cho tất cả các hóa đơn
+                results.forEach((bill) => {
+                    bill.id_product = JSON.parse(bill.id_product);
+                });
+            } catch (parseError) {
+                console.error('Lỗi phân tích chuỗi JSON:', parseError);
+                return res.status(500).json({ success: 0, message: 'Lỗi phân tích chuỗi JSON', error: parseError });
+            }
+            res.json({ success: 1, data: results });
+        } else {
+            res.status(404).json({ success: 0, message: 'Không tìm thấy hóa đơn' });
+        }
+    });
+});
+
+
+app.post('/user', fetchUser, (req, res) => {
+    console.log("GetUser")
+    const userEmail = req.user.email; // Lấy email từ user đã xác thực
+
+    const selectSql = 'SELECT user.email, user.name, customer.address, customer.gender, customer.number FROM user JOIN customer ON user.email = customer.email WHERE user.email = ?';
+    dbConn.query(selectSql, [userEmail], (err, results) => {
+        if (err) {
+            console.error('Lỗi truy vấn cơ sở dữ liệu:', err);
+            return res.status(500).json({ success: 0, message: 'Lỗi truy vấn cơ sở dữ liệu', error: err });
+        }
+        if (results.length > 0) {
+            res.json({ success: 1, data: results[0] });
+        } else {
+            res.status(404).json({ success: 0, message: 'Không tìm thấy người dùng' });
+        }
+    });
+});
+
+app.post('/updateUser', fetchUser, (req, res) => {
+    const { email, name, address, gender, number } = req.body; // Nhận các thông tin cần cập nhật từ client
+
+    const updateSql = 'UPDATE customer c ' +
+                      'JOIN user u ON u.email = c.email ' +
+                      'SET u.name = ?, c.address = ?, c.gender = ?, c.number = ? ' +
+                      'WHERE u.email = ?';
+    dbConn.query(updateSql, [name, address, gender, number, email], (err, results) => {
+        if (err) {
+            console.error('Lỗi cập nhật thông tin người dùng:', err);
+            return res.status(500).json({ success: 0, message: 'Lỗi cập nhật thông tin người dùng', error: err });
+        }
+        res.json({ success: 1, message: 'Thông tin người dùng đã được cập nhật thành công' });
+    });
+});
 
 // Endpoint thêm sản phẩm vào giỏ hàng
 app.post('/addtocart', fetchUser, (req, res) => {
@@ -400,6 +490,46 @@ app.post('/login', (req, res) => {
         res.json({ success: true, token });
     });
 });
+
+
+
+// Thêm thông tin giao hàng vào bảng bills
+app.post('/addbill', (req, res) => {
+    const { email, id_product, quantity, total, discount, payment_id, date, number, name, distric, address, status_pay, status_bill } = req.body;
+    
+    const sql = 'INSERT INTO bills (email, id_product, quantity, total, discount, payment_id, date, number, name, distric, address, status_pay, status_bill) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const values = [email, JSON.stringify(id_product), quantity, total, discount, payment_id, date, number, name, distric, address, status_pay, status_bill];
+
+    dbConn.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi thêm thông tin giao hàng:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi thêm thông tin giao hàng', error: error });
+            return;
+        }
+        const id_bills = results.insertId;
+        res.status(200).json({ success: 1, message: 'Thêm thông tin giao hàng thành công',id_bills });
+    });
+});
+
+//const port = 5000;
+app.post('/addvnpay', (req, res) => {
+    const { vnp_Amount, vnp_BankCode, vnp_CardType, vnp_OrderInfo, vnp_PayDate, vnp_ResponseCode, vnp_TmnCode, vnp_TransactionNo, vnp_TransactionStatus, vnp_TxnRef, vnp_SecureHash } = req.body;
+    
+    const sql = 'INSERT INTO vnpay (vnp_Amount, vnp_BankCode, vnp_CardType, vnp_OrderInfo, vnp_PayDate, vnp_ResponseCode, vnp_TmnCode, vnp_TransactionNo, vnp_TransactionStatus, vnp_TxnRef, vnp_SecureHash) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
+    const values = [vnp_Amount, vnp_BankCode, vnp_CardType, vnp_OrderInfo, vnp_PayDate, vnp_ResponseCode, vnp_TmnCode, vnp_TransactionNo, vnp_TransactionStatus, vnp_TxnRef, vnp_SecureHash];
+
+    dbConn.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi thêm thông tin VNPay:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi thêm thông tin VNPay', error: error });
+            return;
+        }
+        const id_vnpay = results.insertId;
+        res.status(200).json({ success: 1, message: 'Thêm thông tin VNPay thành công', id_vnpay });
+    });
+});
+
+
 
 app.listen(port, () => {
     console.log(`API đang chạy trên cổng ${port}`);

@@ -1,23 +1,91 @@
-.fruit{
+.container {
+    display: flex;
+}
+
+.sidebar {
+    position: fixed; /* Đặt vị trí cố định */
+    top: 130px;
+    left: 20px; /* Gắn vào phía trái của cửa sổ */
+    width: 200px; /* Chiều rộng của sidebar */
+    height: 300px; /* Chiếm toàn bộ chiều cao cửa sổ */
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    
+    background-color: white; /* Nền trắng */
+    /* z-index: 100; Đảm bảo sidebar ở trên các phần tử khác */
+    margin-bottom: 20px;
+}
+
+.sidebar-menu {
+    /* display: flex; */
+    margin-left: 20px;
+    flex-direction: column;
+    list-style: none;
+    font-size: 15px;
+    
+    input{
+        margin-right: 10px;
+        margin-bottom: 5px;
+    }
+}
+
+.sidebar-menu li {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.sidebar-menu hr {
+    border: none;
+    width: 80%;
+    height: 3px;
+    border-radius: 20px;
+    background: black;
+}
+
+.content {
+    margin-left: 241px; /* Đẩy nội dung chính sang phải để không bị trùng với sidebar */
+    padding: 100px;
+    flex: 1;
+    overflow: hidden;
+    box-shadow:0 10px 1px black;
+    
+}
+
+.fruit {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
-    margin-bottom:50px;
+    /* margin-bottom: 50px; */
     margin-top: 50px;
+}
 
-    h1{
-        color: black;
-        margin-top: 20px;
-        margin-bottom: 0%;
-        font-size: 30px;
-        font-weight: 550;}
+.fruit h1 {
+    color: black;
+    margin-bottom: 0;
+    font-size: 30px;
+    font-weight: 550;
+}
 
-    hr{
-        width: 500px;
-        height: 0.5px;
-        border-radius: 10px;
-        background: #252525;
-        margin-bottom: 0%;
+.fruit hr {
+    width: 500px;
+    height: 0.5px;
+    border-radius: 10px;
+    background: #252525;
+    margin-bottom: 0;
+}
+
+@media (max-width: 1280px) {
+    .sidebar {
+        padding: 12px;
+    }
+    .sidebar-menu {
+        gap: 30px;
+        font-size: 16px;
     }
 }

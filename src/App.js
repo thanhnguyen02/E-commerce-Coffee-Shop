@@ -15,6 +15,10 @@ import Product from './Pages/user/shop/InforItem/Product';
 import CartShop from './Pages/user/shop/ProductPage/Cart/CartShop';
 import Post from './Pages/user/Post/Post';
 import SearchResultPage from './Pages/user/shop/Search/SearchResultPage';
+import Thanksfor from './Pages/user/shop/Thanksfor';
+import UserPage from './Pages/user/UserPage';
+import EditUser from './Pages/user/EditUser';
+
 
 
 function App() {
@@ -33,14 +37,17 @@ function App() {
         <Route path='/coffee' element={<Coffee/>}/>
         <Route path='/fruit' element={<Fruit/>}/>
         <Route path='/fns' element={<FandS/>}/> */}
+        <Route path='/thanks' element={<Thanksfor/>}/>
         <Route path='/post' element={<Post/>}/>
         <Route path="/product" element={<Product/>}>
           <Route path=':productId' element={<Product/>}/>
         </Route>
         <Route path='/cart' element={<CartShop/>}/>
+        <Route path='/user' element={<UserPage/>}/>
+        <Route path='/edituser' element={<EditUser/>}/>
         <Route path='/login' element={<LoginPage/>}/>
       </Routes>
-      <MailRecommend/>
+      {/* <MailRecommend/> */}
       <Footer/>
       </BrowserRouter>
       

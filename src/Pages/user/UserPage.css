@@ -1,0 +1,94 @@
+.user-page {
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Căn đầu dòng lên trên */
+    min-height: 100vh; /* Chiều cao tối thiểu là toàn màn hình */
+    background-color: #f5f5f5; /* Màu nền cho dễ nhìn */
+  }
+  
+  .user-info {
+    display: flex;
+    flex-direction: column;
+    width: 350px; /* Độ rộng của form */
+    padding: 20px;
+    margin: 50px 20px; /* Thay đổi margin ở đây để tạo khoảng cách giữa hai phần */
+    background-color: #afafaf; /* Màu nền của form */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho form */
+    border-radius: 8px; /* Bo góc form */
+  }
+  
+  .user-info label {
+    margin-top: 10px;
+  }
+  
+  .user-info input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .user-info button {
+    width: 150px;
+    height: 50px;
+    color: white;
+    background: rgb(0, 0, 0);
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 300;
+    cursor: pointer;
+  }
+  
+  .bills {
+    flex: 1; /* Phần bills chiếm hết không gian còn lại */
+    margin: 50px 20px; /* Thay đổi margin ở đây để tạo khoảng cách giữa hai phần */
+    background-color: #ffffff; /* Màu nền của bills */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho bills */
+    border-radius: 8px; /* Bo góc bills */
+    padding: 20px;
+  }
+  
+  .bills h2 {
+    margin-bottom: 20px;
+  }
+  
+  .bills-column {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    width: 100%;
+    max-width: 2200px;
+    align-items: center;
+    gap: 20px; /* Khoảng cách giữa các cột */
+    padding: 5px 0px;
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  
+  .bill-row {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    align-items: center;
+    gap: 10px; /* Khoảng cách giữa các cột */
+    padding: 10px 0;
+    font-size: 14px;
+    font-weight: 400;
+    border-top: 1px solid #ccc;
+  }
+  
+  .bill-row p {
+    margin: 0;
+  }
+  
+  .bill-row > div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .bill-row > div p {
+    margin-right: 10px;
+  }
+  

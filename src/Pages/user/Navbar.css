@@ -1,8 +1,13 @@
 .navbar {
+    position: fixed; /* Đặt vị trí cố định */
+    top: 0; /* Gắn vào phía trên của cửa sổ */
+    left: 0; /* Gắn vào phía trái của cửa sổ */
+    width: 100%; /* Chiếm toàn bộ chiều rộng của cửa sổ */
     display: flex;
     justify-content: space-around;
-    padding: 16px;
     box-shadow: 0 1px 3px -2px black;
+    background-color: rgb(255, 255, 255); /* Thêm nền trắng để navbar dễ nhìn hơn */
+    z-index: 1000; /* Đảm bảo navbar ở trên các phần tử khác */
 }
 
 .navbar-logo {
@@ -12,7 +17,7 @@
 }
 
 .navbar-logo img {
-    width: 150px;
+    width: 100px;
     height: auto;
 }
 
@@ -37,7 +42,10 @@
     justify-content: center;
     gap: 1px;
     cursor: pointer;
+    background-color: initial;
+    outline: none;
 }
+
 
 .navbar-menu hr {
     border: none;
@@ -54,7 +62,7 @@
 }
 
 .navbar-search input {
-    padding: 10px;
+    padding: 50px;
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 20px;
@@ -64,12 +72,12 @@
 .navbar-login {
     display: flex;
     align-items: center;
-    gap: 35px;
+    gap: 20px;
 }
 
 .navbar-login button {
-    width: 115px;
-    height: 50px;
+    width: 90px;
+    height: 40px;
     outline: none;
     border: 1px solid #6b6b6b;
     border-radius: 20px;
@@ -87,6 +95,7 @@
 .icon-shopping {
     font-size: 30px;
     color: black;
+    margin-right: 15px;
 }
 
 .cart-count {
@@ -103,7 +112,7 @@
     color: white;
 }
 
-@media (max-width: 1280px) {
+/* @media (max-width: 1280px) {
     .navbar {
         padding: 12px 50px;
     }
@@ -123,7 +132,7 @@
         margin-left: -40px;
         font-size: 12px;
     }
-}
+} */
 .navbar-search{
     padding-top: 20px;
 }
