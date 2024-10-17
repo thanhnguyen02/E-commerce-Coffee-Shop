@@ -50,10 +50,10 @@ app.post("/upload", upload.single('product'), (req, res) => {
 
 // Thêm sản phẩm
 app.post('/addproduct', (req, res) => {
-    const { id, name, image, category, describe_detail,new_price,  cost,quantity, tag} = req.body;
+    const { id, name, image, category, describe_detail,new_price,  cost,quantity, tag, status} = req.body;
     
-    const sql = 'INSERT INTO product (id, name, image, category,describe_detail, new_price, cost,quantity,tag) VALUES (?, ?, ?,?, ?, ?, ?, ?, ?)';
-    const values = [id, name, image, category,describe_detail, new_price, cost,quantity, tag];
+    const sql = 'INSERT INTO product (id, name, image, category,describe_detail, new_price, cost,quantity,tag,status) VALUES (?, ?, ?,?, ?, ?, ?, ?, ?,?)';
+    const values = [id, name, image, category,describe_detail, new_price, cost,quantity, tag,status];
 
     dbConn.query(sql, values, (error, results) => {
         if (error) {
@@ -64,14 +64,66 @@ app.post('/addproduct', (req, res) => {
         res.status(200).json({ success: 1, message: 'Thêm sản phẩm thành công' });
     });
 });
+app.post('/addreview', (req, res) => {
+    const { review_id, product_id , user_email , rating , comment,review_date} = req.body;
+    
+    const sql = 'INSERT INTO review (review_id, product_id , user_email , rating , comment,review_date) VALUES (?, ?, ?,?, ?, ?)';
+    const values = [review_id, product_id , user_email , rating , comment,review_date];
 
-// Sửa sản phẩm
+    dbConn.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi thêm đánh giá:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi thêm đánh giá', error: error });
+            return;
+        }
+        res.status(200).json({ success: 1, message: 'Thêm đánh giá thành công' });
+    });
+});
+app.get('/review/:id', (req, res) => {
+    const productId = req.params.id;
+
+    const sql = 'SELECT user.name, review.rating, review.comment, review.review_date FROM user JOIN review ON user.email = review.user_email WHERE product_id = ?';
+    
+    dbConn.query(sql, [productId], (error, results) => {
+        if (error) {
+            console.error('Lỗi khi lấy thông tin đánh giá:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi lấy thông tin đánh giá', error: error });
+            return;
+        }
+        if (results.length === 0) {
+            res.status(404).json({ success: 0, message: 'Không tìm thấy đánh giá nào cho sản phẩm với id đã cho' });
+            return;
+        }
+        res.status(200).json({ success: 1, reviews: results });
+    });
+});
+
+// Endpoint lấy rating của sp theo id
+app.get('/getrating/:id', (req, res) => {
+    const productId = req.params.id;
+    const sql = "SELECT AVG(rating) AS averageRating FROM review WHERE product_id = ?";
+
+    dbConn.query(sql, [productId], (error, results) => {
+        if (error) {
+            console.error('Lỗi khi lấy rating sản phẩm:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi lấy rating sản phẩm', error: error });
+            return;
+        }
+        if (results.length === 0 || results[0].averageRating === null) {
+            res.status(404).json({ success: 0, message: 'Không tìm thấy rating cho sản phẩm' });
+        } else {
+            res.status(200).json({ success: 1, averageRating: results[0].averageRating });
+        }
+    });
+});
+
+// Sửa sp
 app.put('/editproduct/:id', (req, res) => {
     const id = req.params.id;
-    const { name, image, category, new_price,describe_detail, cost,quantity, tag } = req.body;
+    const { name, image, category, new_price, describe_detail, cost, quantity, tag, status } = req.body;
 
-    const sql = 'UPDATE product SET name = ?, image = ?,describe_detail=?, category = ?, new_price = ?, cost = ?,quantity=?,tag=? WHERE id = ?';
-    const values = [name, image, category,describe_detail, new_price, cost,quantity,tag, id];
+    const sql = 'UPDATE product SET name = ?, image = ?, describe_detail = ?, category = ?, new_price = ?, cost = ?, quantity = ?, tag = ?, status = ? WHERE id = ?';
+    const values = [name, image, describe_detail, category, new_price, cost, quantity, tag, status, id];
 
     dbConn.query(sql, values, (error, results) => {
         if (error) {
@@ -88,7 +140,8 @@ app.put('/editproduct/:id', (req, res) => {
 });
 
 
-// Xóa sản phẩm
+
+// Xóa sp
 app.delete('/deleteproduct', (req, res) => {
     const { id } = req.body;
 
@@ -113,7 +166,7 @@ app.delete('/deleteproduct', (req, res) => {
     });
 });
 
-// Endpoint GET để lấy thông tin sản phẩm theo id
+// Endpoint lấy thông tin sản phẩm theo id
 app.get('/product/:id', (req, res) => {
     const id = req.params.id;
 
@@ -154,7 +207,7 @@ app.post('/searchproduct', (req, res) => {
     // Sử dụng wildcard để tìm kiếm theo tên sản phẩm
     const queryParam = `%${productName}%`;
 
-    // Truyền tham số hai lần để khớp với hai điều kiện LIKE
+    // Truyền tham số hai lần để khớp với hai đk LIKE
     dbConn.query(sql, [queryParam, queryParam], (error, results) => {
         if (error) {
             console.error('Lỗi khi lấy sản phẩm:', error);
@@ -165,10 +218,8 @@ app.post('/searchproduct', (req, res) => {
     });
 });
 
-
-
 app.get('/allpost', (req, res) => {
-    const sql = 'SELECT * FROM post ORDER BY post_date DESC';
+    const sql = 'SELECT * FROM post WHERE status LIKE "%on%" ORDER BY post_date DESC';
     
     dbConn.query(sql, (error, results) => {
         if (error) {
@@ -180,11 +231,43 @@ app.get('/allpost', (req, res) => {
     });
 });
 
-app.post('/addpost', (req, res) => {
-    const { post_id, title, content, image, tag} = req.body;
+app.get('/allpostadmin', (req, res) => {
+    const sql = 'SELECT * FROM post';
     
-    const sql = 'INSERT INTO post (post_id, title, content, image,tag) VALUES (?, ?, ?, ?, ?)';
-    const values = [post_id, title, content, image, tag];
+    dbConn.query(sql, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi lấy bài viết:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi lấy bài viết', error: error });
+            return;
+        }
+        res.status(200).json({ success: 1, post: results });
+    });
+});
+
+app.get('/post/:id', (req, res) => {
+    const id = req.params.id;
+
+    const sql = 'SELECT * FROM post WHERE post_id = ?';
+    dbConn.query(sql, [id], (error, results) => {
+        if (error) {
+            console.error('Lỗi khi lấy thông tin bài viết:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi lấy thông tin bài viết', error: error });
+            return;
+        }
+        if (results.length === 0) {
+            res.status(404).json({ success: 0, message: 'Không tìm thấy bài viết với id đã cho' });
+            return;
+        }
+        const product = results[0];
+        res.status(200).json({ success: 1, product: product });
+    });
+});
+
+app.post('/addpost', (req, res) => {
+    const { post_id, title, content, image, tag, status} = req.body;
+    
+    const sql = 'INSERT INTO post (post_id, title, content, image,tag, status) VALUES (?, ?, ?, ?, ?,?)';
+    const values = [post_id, title, content, image, tag,status];
 
     dbConn.query(sql, values, (error, results) => {
         if (error) {
@@ -195,6 +278,44 @@ app.post('/addpost', (req, res) => {
         res.status(200).json({ success: 1, message: 'Thêm bài viết thành công' });
     });
 });
+app.post('/adddiscount', (req, res) => {
+    const { code, percent, quantity} = req.body;
+    
+    const sql = 'INSERT INTO discount (code, percent, quantity) VALUES (?, ?, ?)';
+    const values = [code, percent, quantity];
+
+    dbConn.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi thêm mã giảm giá:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi thêm mã giảm giá', error: error });
+            return;
+        }
+        res.status(200).json({ success: 1, message: 'Thêm mã giảm giá thành công' });
+    });
+});
+// Sửa bài viết
+app.put('/editpost/:id', (req, res) => {
+    const id = req.params.id;
+    const { title, content, image, tag, status } = req.body;
+
+    const sql = 'UPDATE post SET title = ?, content = ?, image = ?, tag = ?, status = ? WHERE post_id = ?';
+    const values = [title, content, image, tag, status, id];
+
+    dbConn.query(sql, values, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi cập nhật sản phẩm:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi cập nhật sản phẩm', error: error });
+            return;
+        }
+        if (results.affectedRows === 0) {
+            res.status(404).json({ success: 0, message: 'Không tìm thấy sản phẩm với id đã cho' });
+            return;
+        }
+        res.status(200).json({ success: 1, message: 'Cập nhật sản phẩm thành công' });
+    });
+});
+
+
 app.post('/mail', (req, res) => {
     const { mail } = req.body;
   
@@ -202,7 +323,7 @@ app.post('/mail', (req, res) => {
       return res.status(400).json({ success: 0, message: 'Thiếu email' });
     }
   
-    // Kiểm tra xem email đã tồn tại chưa
+    // Ktra xem email đã tồn tại chưa
     const checkSql = 'SELECT * FROM mail_recommend WHERE mail = ?';
     dbConn.query(checkSql, [mail], (error, results) => {
       if (error) {
@@ -214,7 +335,7 @@ app.post('/mail', (req, res) => {
         return res.status(409).json({ success: 0, message: 'Email đã tồn tại' });
       }
   
-      // Nếu email chưa tồn tại, thực hiện chèn vào cơ sở dữ liệu
+      // Nếu email chưa tt,chèn vào cơ sở dữ liệu
       const insertSql = 'INSERT INTO mail_recommend (mail) VALUES (?)';
       dbConn.query(insertSql, [mail], (error, results) => {
         if (error) {
@@ -226,7 +347,7 @@ app.post('/mail', (req, res) => {
     });
   });
   
-// Middleware để xác thực người dùng
+// Middleware xác thực người dùng
 const fetchUser = async (req, res, next) => {
     const token = req.header('auth-token');
     if (!token) {
@@ -244,10 +365,10 @@ const fetchUser = async (req, res, next) => {
 //endpoint lay du lieu gio hang cua ng dung
 app.post('/getcart', fetchUser, (req, res) => {
     console.log("GetCart");
-    // Lấy email của người dùng từ req.user
+    // Lấy email của ngdung từ req.user
     const userEmail = req.user.email;
 
-    // Truy vấn để lấy dữ liệu giỏ hàng của người dùng
+    
     const selectSql = 'SELECT cartData FROM user WHERE email = ?';
     dbConn.query(selectSql, [userEmail], (err, results) => {
         if (err) {
@@ -255,15 +376,78 @@ app.post('/getcart', fetchUser, (req, res) => {
             return res.status(500).json({ success: 0, message: 'Database query error', error: err });
         }
         if (results.length > 0) {
-            // Nếu có kết quả, lấy dữ liệu giỏ hàng từ kết quả truy vấn
+            // Nếu có kq, lấy dữ liệu giỏ hàng từ kq truy vấn
             let cartData = JSON.parse(results[0].cartData);
             res.status(200).json(cartData);
         } else {
-            // Nếu không tìm thấy người dùng
+            // Neu không tìm thấy ngdung
             res.status(404).json({ success: 0, message: 'User not found' });
         }
     });
 });
+
+app.get('/allbills', (req, res) => {
+    const sql = 'SELECT * FROM bills ORDER BY date DESC';
+    
+    dbConn.query(sql, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi lấy đơn hàng:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi lấy đơn hàng', error: error });
+            return;
+        }
+        res.status(200).json({ success: 1, post: results });
+    });
+});
+
+app.get('/alldiscount', (req, res) => {
+    const sql = 'SELECT * FROM discount';
+    
+    dbConn.query(sql, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi lấy danh sách mã giảm giá:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi lấy danh sách mã giảm giá', error: error });
+            return;
+        }
+        res.status(200).json({ success: 1, post: results });
+    });
+});
+
+app.get('/alluser', (req, res) => {
+    const sql = 'SELECT user.name, user.email, user.password, customer.address, customer.gender, customer.number, user.role_id FROM user JOIN customer ON user.email = customer.email';
+    
+    dbConn.query(sql, (error, results) => {
+        if (error) {
+            console.error('Lỗi khi lấy danh sách người dùng:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi lấy danh sách người dùng', error: error });
+            return;
+        }
+        res.status(200).json({ success: 1, post: results });
+    });
+});
+
+app.put('/updatebill/:billId', (req, res) => {
+    const billId = req.params.billId;
+    const { status_bill } = req.body;
+  
+    if (!status_bill) {
+      return res.status(400).json({ success: 0, message: 'Status_bill is required' });
+    }
+  
+    const updateQuery = 'UPDATE bills SET status_bill = ? WHERE id_bill = ?';
+  
+    dbConn.query(updateQuery, [status_bill, billId], (err, result) => {
+      if (err) {
+        console.error('Lỗi khi cập nhật đơn hàng:', err);
+        return res.status(500).json({ success: 0, message: 'Lỗi khi cập nhật đơn hàng' });
+      }
+  
+      if (result.affectedRows === 0) {
+        return res.status(404).json({ success: 0, message: 'Đơn hàng không tồn tại' });
+      }
+  
+      res.json({ success: 1, message: 'Cập nhật đơn hàng thành công' });
+    });
+  });
 
 app.post('/bills', fetchUser, (req, res) => {
     console.log("GetBills");
@@ -277,7 +461,7 @@ app.post('/bills', fetchUser, (req, res) => {
         }
         if (results.length > 0) {
             try {
-                // Chuyển đổi id_product từ chuỗi JSON sang đối tượng cho tất cả các hóa đơn
+                // Chuyển đổi id_product từ chuỗi JSON sang đtượng cho all hóa đơn
                 results.forEach((bill) => {
                     bill.id_product = JSON.parse(bill.id_product);
                 });
@@ -327,6 +511,30 @@ app.post('/updateUser', fetchUser, (req, res) => {
     });
 });
 
+app.post('/checkdiscount', (req, res) => {
+    const { code } = req.body;
+
+    const query = 'SELECT * FROM discount WHERE code = ?';
+    dbConn.query(query, [code], (err, results) => {
+        if (err) {
+            return res.status(500).json({ success: false, message: 'Database query error' });
+        }
+
+        if (results.length > 0) {
+            const discount = results[0];
+            if (discount.quantity > 0) {
+                // mgg hợp lệ và còn sl
+                res.json({ success: true, percent: discount.percent });
+            } else {
+                // mgg hợp lệ nhưng đã hết số lượng
+                res.json({ success: false, message: 'Mã giảm giá đã hết' });
+            }
+        } else {
+            // mgg không hợp lệ
+            res.json({ success: false, message: 'Mã giảm giá không hợp lệ' });
+        }
+    });
+});
 // Endpoint thêm sản phẩm vào giỏ hàng
 app.post('/addtocart', fetchUser, (req, res) => {
     if (!req.user || !req.user.email) {
@@ -336,7 +544,7 @@ app.post('/addtocart', fetchUser, (req, res) => {
     const userEmail = req.user.email;
     const itemId = req.body.itemId;
 
-    // Truy vấn để lấy dữ liệu giỏ hàng của người dùng
+    
     const selectSql = 'SELECT cartData FROM user WHERE email = ?';
     dbConn.query(selectSql, [userEmail], (err, results) => {
         if (err) {
@@ -353,7 +561,6 @@ app.post('/addtocart', fetchUser, (req, res) => {
                 cartData[itemId] = 1;
             }
 
-            // Cập nhật giỏ hàng trong cơ sở dữ liệu
             const updateSql = 'UPDATE user SET cartData = ? WHERE email = ?';
             dbConn.query(updateSql, [JSON.stringify(cartData), userEmail], (err, results) => {
                 if (err) {
@@ -378,7 +585,7 @@ app.post('/removefromcart', fetchUser, (req, res) => {
     const userEmail = req.user.email;
     const itemId = req.body.itemId;
 
-    // Truy vấn để lấy dữ liệu giỏ hàng của người dùng
+
     const selectSql = 'SELECT cartData FROM user WHERE email = ?';
     dbConn.query(selectSql, [userEmail], (err, results) => {
         if (err) {
@@ -388,19 +595,17 @@ app.post('/removefromcart', fetchUser, (req, res) => {
         if (results.length > 0) {
             let cartData = JSON.parse(results[0].cartData);
 
-            // Kiểm tra xem sản phẩm có tồn tại trong giỏ hàng không
             if (!cartData[itemId]) {
                 return res.status(400).json({ success: 0, message: 'Sản phẩm không tồn tại trong giỏ hàng' });
             }
 
-            // Giảm số lượng sản phẩm trong giỏ hàng
             if (cartData[itemId] > 1) {
                 cartData[itemId] -= 1;
             } else {
-                delete cartData[itemId]; // Nếu số lượng là 1 thì xóa khỏi giỏ hàng
+                delete cartData[itemId]; 
             }
 
-            // Cập nhật giỏ hàng trong cơ sở dữ liệu
+       
             const updateSql = 'UPDATE user SET cartData = ? WHERE email = ?';
             dbConn.query(updateSql, [JSON.stringify(cartData), userEmail], (err, results) => {
                 if (err) {
@@ -418,9 +623,9 @@ app.post('/removefromcart', fetchUser, (req, res) => {
 
 // Đăng ký người dùng
 app.post('/signup', (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password,role_id } = req.body;
 
-    // Kiểm tra email đã tồn tại hay chưa
+    
     const checkEmailSql = 'SELECT * FROM user WHERE email = ?';
     dbConn.query(checkEmailSql, [email], (error, results) => {
         if (error) {
@@ -434,15 +639,15 @@ app.post('/signup', (req, res) => {
             return;
         }
 
-        // Tạo giỏ hàng mặc định
+        // Tạo ghang mặc định
         let cart = {};
         for (let i = 0; i < 300; i++) {
             cart[i] = 0;
         }
 
-        // Thêm người dùng mới vào cơ sở dữ liệu
-        const insertUserSql = 'INSERT INTO user (name, email, password, cartdata) VALUES (?, ?, ?, ?)';
-        const values = [name, email, password, JSON.stringify(cart)];
+        
+        const insertUserSql = 'INSERT INTO user (name, email, password, cartdata,role_id) VALUES (?, ?, ?, ?,?)';
+        const values = [name, email, password, JSON.stringify(cart),'1'];
 
         dbConn.query(insertUserSql, values, (error, results) => {
             if (error) {
@@ -456,6 +661,17 @@ app.post('/signup', (req, res) => {
             const token = jwt.sign(tokenData, 'secret_ecom');
             res.json({ success: true, token });
         });
+
+        const insertUserSql2 = 'INSERT INTO customer ( email) VALUES (?)';
+        const values2 = [email];
+
+        dbConn.query(insertUserSql2, values2, (error, results) => {
+            if (error) {
+                console.error('Lỗi khi thêm khách hàng:', error);
+                res.status(500).json({ success: false, message: 'Lỗi khi thêm khách hàng', error: error });
+                return;
+            }
+        });
     });
 });
 
@@ -463,7 +679,7 @@ app.post('/signup', (req, res) => {
 app.post('/login', (req, res) => {
     const { email, password } = req.body;
 
-    // Kiểm tra email và mật khẩu
+
     const sql = 'SELECT * FROM user WHERE email = ?';
     dbConn.query(sql, [email], (error, results) => {
         if (error) {
@@ -491,11 +707,41 @@ app.post('/login', (req, res) => {
     });
 });
 
+// Đăng nhập người dùng
+app.post('/loginadmin', (req, res) => {
+    const { email, password } = req.body;
 
+   
+    const sql = 'SELECT * FROM user WHERE email = ? AND role_id = 2';
+    dbConn.query(sql, [email], (error, results) => {
+        if (error) {
+            console.error('Lỗi khi tìm người dùng:', error);
+            res.status(500).json({ success: false, message: 'Lỗi khi tìm người dùng', error: error });
+            return;
+        }
+
+        if (results.length === 0) {
+            res.status(400).json({ success: false, message: 'Email hoặc mật khẩu không đúng' });
+            return;
+        }
+
+        const user = results[0];
+
+        if (user.password !== password) {
+            res.status(400).json({ success: false, message: 'Email hoặc mật khẩu không đúng' });
+            return;
+        }
+
+        const tokenData = { user: { email: email } };
+
+        const token = jwt.sign(tokenData, 'secret_ecom');
+        res.json({ success: true, token });
+    });
+});
 
 // Thêm thông tin giao hàng vào bảng bills
 app.post('/addbill', (req, res) => {
-    const { email, id_product, quantity, total, discount, payment_id, date, number, name, distric, address, status_pay, status_bill } = req.body;
+    const { email, id_product, quantity, total, discount, payment_id, date, number, name, distric, address, status_pay, status_bill, discountCode } = req.body;
     
     const sql = 'INSERT INTO bills (email, id_product, quantity, total, discount, payment_id, date, number, name, distric, address, status_pay, status_bill) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
     const values = [email, JSON.stringify(id_product), quantity, total, discount, payment_id, date, number, name, distric, address, status_pay, status_bill];
@@ -506,12 +752,27 @@ app.post('/addbill', (req, res) => {
             res.status(500).json({ success: 0, message: 'Lỗi khi thêm thông tin giao hàng', error: error });
             return;
         }
+
+        
+        if (discountCode) {
+            const updateDiscountQuery = 'UPDATE discount SET quantity = quantity - 1 WHERE code = ?';
+            dbConn.query(updateDiscountQuery, [discountCode], (updateError, updateResults) => {
+                if (updateError) {
+                    console.error('Lỗi khi cập nhật số lượng mã giảm giá:', updateError);
+                    res.status(500).json({ success: 0, message: 'Lỗi khi cập nhật số lượng mã giảm giá', error: updateError });
+                    return;
+                }
+                console.log('Cập nhật số lượng mã giảm giá thành công');
+            });
+        }
+
         const id_bills = results.insertId;
-        res.status(200).json({ success: 1, message: 'Thêm thông tin giao hàng thành công',id_bills });
+        res.status(200).json({ success: 1, message: 'Thêm thông tin giao hàng thành công', id_bills });
     });
 });
 
-//const port = 5000;
+
+
 app.post('/addvnpay', (req, res) => {
     const { vnp_Amount, vnp_BankCode, vnp_CardType, vnp_OrderInfo, vnp_PayDate, vnp_ResponseCode, vnp_TmnCode, vnp_TransactionNo, vnp_TransactionStatus, vnp_TxnRef, vnp_SecureHash } = req.body;
     
@@ -529,6 +790,71 @@ app.post('/addvnpay', (req, res) => {
     });
 });
 
+app.get('/api/statistics', (req, res) => {
+    const totalOrdersQuery = 'SELECT COUNT(*) AS totalOrders FROM bills';
+    const totalUsersQuery = 'SELECT COUNT(*) AS totalUsers FROM user';
+    const totalRevenueQuery = 'SELECT SUM(total) AS totalRevenue FROM bills where status_bill LIKE "%đã hoàn thành%"';
+    const salesDataQuery = `
+        SELECT DATE_FORMAT(date, '%Y-%m') AS month, SUM(total) AS sales 
+        FROM bills 
+        GROUP BY month
+    `;
+    const orderDataQuery = `
+        SELECT DATE_FORMAT(date, '%Y-%m') AS month, COUNT(*) AS orders 
+        FROM bills 
+        GROUP BY month
+    `;
+
+    dbConn.query(totalOrdersQuery, (err, totalOrdersResult) => {
+        if (err) throw err;
+
+        dbConn.query(totalUsersQuery, (err, totalUsersResult) => {
+            if (err) throw err;
+
+            dbConn.query(totalRevenueQuery, (err, totalRevenueResult) => {
+                if (err) throw err;
+
+                dbConn.query(salesDataQuery, (err, salesDataResult) => {
+                    if (err) throw err;
+
+                    dbConn.query(orderDataQuery, (err, orderDataResult) => {
+                        if (err) throw err;
+                        
+                        res.json({
+                            totalOrders: totalOrdersResult[0].totalOrders,
+                            totalUsers: totalUsersResult[0].totalUsers,
+                            totalRevenue: totalRevenueResult[0].totalRevenue,
+                            salesData: salesDataResult,
+                            orderData: orderDataResult
+                        });
+                    });
+                });
+            });
+        });
+    });
+});
+
+
+app.get('/api/statisticsdate', (req, res) => {
+    const { startDate, endDate } = req.query;
+
+    const sql = 'SELECT COUNT(*) AS totalOrders, SUM(quantity) AS totalUsers, SUM(total) AS totalRevenue, MONTH(date) AS month, SUM(total) AS sales, COUNT(id_bill) AS orders FROM bills WHERE date BETWEEN ? AND ? AND status_bill LIKE "%đã hoàn thành%" GROUP BY month';
+
+    dbConn.query(sql, [startDate, endDate], (error, results) => {
+        if (error) {
+            console.error('Lỗi khi lấy dữ liệu:', error);
+            res.status(500).json({ success: 0, message: 'Lỗi khi lấy dữ liệu', error: error });
+            return;
+        }
+
+        const totalOrders = results.length;
+        const totalUsers = results.reduce((sum, row) => sum + row.totalUsers, 0);
+        const totalRevenue = results.reduce((sum, row) => sum + row.sales, 0);
+        
+
+        res.status(200).json({ totalOrders, totalUsers, totalRevenue });
+    });
+});
 
 
 app.listen(port, () => {

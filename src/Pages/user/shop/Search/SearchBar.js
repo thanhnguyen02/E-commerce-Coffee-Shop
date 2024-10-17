@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import './Search.css';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
+import { useNavigate } from 'react-router-dom'; 
 import { IoIosSearch } from "react-icons/io";
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const navigate = useNavigate(); // Initialize useNavigate for navigation
+    const navigate = useNavigate(); 
 
     const handleSearch = async () => {
         if (searchQuery.trim() !== '') {
-            navigate(`/search/${encodeURIComponent(searchQuery)}`); // Navigate to search results page
+            navigate(`/search/${encodeURIComponent(searchQuery)}`); 
         }
     };
 

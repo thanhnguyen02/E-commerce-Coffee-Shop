@@ -4,7 +4,7 @@ import logo from '../img/logo.jpg';
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { ShopContext } from './shop/Context/ShopContext';
-import SearchBar from './shop/Search/SearchBar'; // Correct import path for SearchBar
+import SearchBar from './shop/Search/SearchBar'; 
 import { IoIosSearch } from "react-icons/io";
 import { FaUserCircle } from "react-icons/fa";
 

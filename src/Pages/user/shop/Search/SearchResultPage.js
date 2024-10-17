@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import './Search.css'; // Import CSS for SearchResultPage if necessary
+import './Search.css'; 
 import Item from '../../Item/Item';
 
 const SearchResultPage = () => {

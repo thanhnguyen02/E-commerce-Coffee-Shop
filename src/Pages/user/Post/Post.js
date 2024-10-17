@@ -10,7 +10,7 @@ const Post = () => {
         fetch('http://localhost:5000/allpost')
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
+                    throw new Error( response.statusText);
                 }
                 return response.json();
             })
@@ -34,7 +34,6 @@ const Post = () => {
             </React.Fragment>
         ));
     };
-
     return (
         <div className="post-container">
             {/* <HomePage /> */}

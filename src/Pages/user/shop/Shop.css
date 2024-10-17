@@ -3,17 +3,17 @@
 }
 
 .sidebar {
-    position: fixed; /* Đặt vị trí cố định */
+    position: fixed; 
     top: 130px;
-    left: 20px; /* Gắn vào phía trái của cửa sổ */
-    width: 200px; /* Chiều rộng của sidebar */
-    height: 300px; /* Chiếm toàn bộ chiều cao cửa sổ */
+    left: 20px; 
+    width: 200px; 
+    height: 300px; 
     display: flex;
     flex-direction: column;
     padding: 10px;
     
-    background-color: white; /* Nền trắng */
-    /* z-index: 100; Đảm bảo sidebar ở trên các phần tử khác */
+    background-color: white;
+    /* z-index: 100; 
     margin-bottom: 20px;
 }
 
@@ -48,7 +48,7 @@
 }
 
 .content {
-    margin-left: 241px; /* Đẩy nội dung chính sang phải để không bị trùng với sidebar */
+    margin-left: 241px; 
     padding: 100px;
     flex: 1;
     overflow: hidden;

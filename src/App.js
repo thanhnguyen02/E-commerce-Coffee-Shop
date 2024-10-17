@@ -19,8 +19,6 @@ import Thanksfor from './Pages/user/shop/Thanksfor';
 import UserPage from './Pages/user/UserPage';
 import EditUser from './Pages/user/EditUser';
 
-
-
 function App() {
   return (
     <div className="App">

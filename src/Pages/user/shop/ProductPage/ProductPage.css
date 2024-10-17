@@ -1,38 +1,45 @@
 .productpage {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0px 170px;
-    padding-top: 80px;
+    margin: 0 auto;
+    padding: 80px 20px;
+    max-width: 1200px;
 }
 
 .productpage-left {
+    flex: 1;
     display: flex;
-    margin-top: 50px;
-    margin-bottom: 100px;
-    width: 50%; /* Chia nửa trái */
     justify-content: center;
     align-items: center;
+    margin-bottom: 40px;
 }
 
 .productpage-img img {
-    width: 100%; /* Đảm bảo ảnh vừa với nửa trái */
-    max-width: 380px; /* Giới hạn kích thước tối đa */
+    width: 100%;
+    max-width: 380px;
     height: auto;
+    object-fit: cover;
 }
 
 .productpage-right {
+    flex: 1;
+    margin-bottom: 40px;
     margin-top: 50px;
-    margin-bottom: 100px;
-    width: 50%; /* Chia nửa phải */
 }
 
 .productpage-star {
     display: flex;
+    align-items: center;
     gap: 5px;
+    margin-top: 10px;
 }
 
 .productpage-price {
     display: flex;
+    align-items: center;
+    margin: 20px 0;
+    font-weight: bold;
     gap: 10px;
 }
 
@@ -40,11 +47,6 @@
     text-decoration: line-through;
     color: gray;
 }
-
-/* .productpage-price .new-price {
-    font-weight: bold;
-    color: red;
-} */
 
 .product-mota {
     margin: 20px 0;
@@ -65,6 +67,7 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -76,10 +79,84 @@ button:hover {
     font-style: italic;
     color: gray;
 }
-.size div{
+
+.size div {
     padding: 10px 15px;
     background: white;
     border: 1px solid rgb(166, 166, 166);
     border-radius: 10px;
     cursor: pointer;
+}
+
+.review-form {
+    margin-top: 30px;
+}
+
+.review-form h2 {
+    margin-bottom: 10px;
+}
+
+.review-form label {
+    display: block;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.mail-re{
+    margin-left: 10px;
+    padding: 5px 15px;
+    border: 1px solid #000000;
+    border-radius: 5px;
+}
+.review-form textarea {
+    margin-top: 10px;
+    width: 100%;
+    height: 100px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+.review-table {
+    margin-top: 30px;
+    padding: 0 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.review-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.review-table th, .review-table td {
+    border: 1px solid #dbdbdb;
+    padding: 8px;
+    text-align: left;
+}
+
+.review-table th {
+    background-color: #ffffff;
+}
+.option{
+    padding: 5px 15px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+@media (max-width: 768px) {
+    .productpage {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .productpage-left, .productpage-right {
+        width: 100%;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .review-table {
+        padding: 0 10px;
+    }
 }

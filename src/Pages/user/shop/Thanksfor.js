@@ -15,7 +15,7 @@ const Thanksfor = () => {
     const vnp_SecureHash = params.get('vnp_SecureHash');
 
     const data = {
-      id_vnpay: Date.now(), // Hoặc giá trị id khác mà bạn muốn sử dụng
+      id_vnpay: Date.now(), 
       vnp_Amount,
       vnp_BankCode,
       vnp_CardType,
@@ -23,7 +23,7 @@ const Thanksfor = () => {
       vnp_PayDate,
       vnp_ResponseCode: params.get('vnp_ResponseCode'),
       vnp_TmnCode,
-      vnp_TransactionNo: vnp_BankTranNo, // Nếu bạn muốn lưu trữ số giao dịch ngân hàng
+      vnp_TransactionNo: vnp_BankTranNo, 
       vnp_TransactionStatus,
       vnp_TxnRef,
       vnp_SecureHash,
@@ -51,7 +51,7 @@ const Thanksfor = () => {
         name: localStorage.getItem('shippingName'),
         distric: localStorage.getItem('shippingDistrict'),
         address: localStorage.getItem('shippingSpecificAddress'),
-        status_pay: 1,  // assuming status_pay is 1 for paid
+        status_pay: 1,  
         status_bill: 'Đã thanh toán'
       };
 

@@ -15,7 +15,7 @@ const Shop = () => {
     macchiato: false
   });
 
-  // Function to handle checkbox changes
+  
   const handleCheckboxChange = (event) => {
     const { value, checked } = event.target;
     setFilters(prevFilters => ({

@@ -21,7 +21,7 @@
     border: 1px solid #ccc;
     border-radius: 20px;
     outline: none;
-    margin-right: 0px; /* Để chứa button tìm kiếm */
+    margin-right: 0px; 
 }
 
 .search-input button {
@@ -52,9 +52,9 @@
     text-align: center;
 }
 .search-result-page {
-    max-width: 1200px; /* Giới hạn chiều rộng */
-    margin: 0 auto; /* Canh giữa trang */
-    padding: 0 20px; /* Padding bên trái và bên phải */
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
     padding-top: 60px;
     margin-bottom: 50px;
 }

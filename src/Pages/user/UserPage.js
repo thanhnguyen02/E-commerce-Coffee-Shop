@@ -7,10 +7,10 @@ const UserPage = () => {
   const { userInfo, all_img, fetchBills, bills } = useContext(ShopContext);
 
   useEffect(() => {
-    fetchBills(); // Gọi hàm fetchBills để lấy dữ liệu hóa đơn
+    fetchBills(); // Gọi hàm fetchBills lấy dl hóa đơn
   }, [fetchBills]);
 
-  const billArray = bills || []; // Đảm bảo billArray là mảng rỗng nếu bills là null hoặc undefined
+  const billArray = bills || []; // billArray là mảng rỗng nếu bills là null hoặc undefined
 
   return (
     <div className="user-page">
@@ -35,7 +35,7 @@ const UserPage = () => {
           <p>Mã hóa đơn</p>
           <p>Tên sản phẩm - số lượng</p>
           <p>Tổng tiền</p>
-          <p>Mã thanh toán</p>
+          <p>Mã thanh toán VNPAY</p>
           <p>Ngày tạo</p>
           <p>Số điện thoại</p>
           <p>Địa chỉ</p>

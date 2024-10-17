@@ -2,20 +2,20 @@
     padding-top: 100px;
     display: flex;
     justify-content: center;
-    align-items: flex-start; /* Căn đầu dòng lên trên */
-    min-height: 100vh; /* Chiều cao tối thiểu là toàn màn hình */
-    background-color: #f5f5f5; /* Màu nền cho dễ nhìn */
+    align-items: flex-start; 
+    min-height: 100vh; 
+    background-color: #f5f5f5; 
   }
   
   .user-info {
     display: flex;
     flex-direction: column;
-    width: 350px; /* Độ rộng của form */
+    width: 350px;
     padding: 20px;
-    margin: 50px 20px; /* Thay đổi margin ở đây để tạo khoảng cách giữa hai phần */
-    background-color: #afafaf; /* Màu nền của form */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho form */
-    border-radius: 8px; /* Bo góc form */
+    margin: 50px 20px; 
+    background-color: #afafaf; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; 
   }
   
   .user-info label {
@@ -43,11 +43,11 @@
   }
   
   .bills {
-    flex: 1; /* Phần bills chiếm hết không gian còn lại */
-    margin: 50px 20px; /* Thay đổi margin ở đây để tạo khoảng cách giữa hai phần */
-    background-color: #ffffff; /* Màu nền của bills */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Đổ bóng cho bills */
-    border-radius: 8px; /* Bo góc bills */
+    flex: 1; 
+    margin: 50px 20px; 
+    background-color: #ffffff; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
     padding: 20px;
   }
   
@@ -61,7 +61,7 @@
     width: 100%;
     max-width: 2200px;
     align-items: center;
-    gap: 20px; /* Khoảng cách giữa các cột */
+    gap: 20px; 
     padding: 5px 0px;
     color: black;
     font-size: 18px;
@@ -72,7 +72,7 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     align-items: center;
-    gap: 10px; /* Khoảng cách giữa các cột */
+    gap: 10px; 
     padding: 10px 0;
     font-size: 14px;
     font-weight: 400;

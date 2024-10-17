@@ -10,7 +10,7 @@ const Category = ({ category, banner, filters,searchQuery }) => {
   useEffect(() => {
     let products = all_img.filter((item) => item.category === category);
     
-    // Apply filters only if filters object is defined
+  
     if (filters) {
       if (filters.coffee) {
         products = products.filter(item => item.tag.includes("coffee"));

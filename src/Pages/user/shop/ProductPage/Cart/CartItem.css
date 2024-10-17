@@ -5,6 +5,7 @@
 
 .cartshop h2 {
     font-size: 30px;
+    
 }
 
 .cart-main {
@@ -60,8 +61,16 @@
     display: flex;
     justify-content: space-between;
     padding: 0px 0px;
+   
 }
 
+.total-item1 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 0px;
+    margin-top: 50px;
+   
+}
 .button-total {
     width: 260px;
     height: 60px;

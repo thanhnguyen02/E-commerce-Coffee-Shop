@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { ShopContext } from './shop/Context/ShopContext'; // Import ShopContext từ file tương ứng
+import { ShopContext } from './shop/Context/ShopContext'; 
 import './UserPage.css';
 
 const EditUser = () => {
-    const { userInfo, setUserInfo } = useContext(ShopContext); // Lấy userInfo từ context
+    const { userInfo, setUserInfo } = useContext(ShopContext); 
 
     const [name, setName] = useState(userInfo ? userInfo.name : '');
     const [address, setAddress] = useState(userInfo ? userInfo.address : '');
@@ -11,7 +11,7 @@ const EditUser = () => {
     const [number, setNumber] = useState(userInfo ? userInfo.number : '');
 
     const handleUpdate = () => {
-        const token = localStorage.getItem('auth-token'); // Lấy token từ local storage hoặc nơi lưu trữ khác
+        const token = localStorage.getItem('auth-token'); // Lấy token từ localstorage 
     
         const updatedInfo = { email: userInfo.email, name, address, gender, number };
     
@@ -26,9 +26,9 @@ const EditUser = () => {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                // Cập nhật thông tin người dùng trong context (nếu cần)
+                
                 alert('Thông tin người dùng đã được cập nhật thành công!');
-                window.location.href = '/user'; // Chuyển hướng đến đường dẫn '/user' sau khi cập nhật thành công
+                window.location.href = '/user'; 
             } else {
                 alert('Có lỗi xảy ra khi cập nhật thông tin người dùng.');
             }
