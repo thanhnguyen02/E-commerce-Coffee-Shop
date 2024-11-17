@@ -68,3 +68,14 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+ ![1.	Giao diện trang chủ
+Khách hàng truy cập vào website sẽ hiển thị danh sách đồ uống đang kinh doanh tại cửa hàng với hơn 50 sản phẩm đồ uống khác nhau được chia theo danh mục](./DEMOPHOTOS/1.1.png)
+ 
+ 
+Hình 1.1 Giao diện trang chủ
+
+2.	Giao diện đăng nhập
+Để tiến hành mua hàng tại website khách hàng cần đăng nhập. Nếu khách hàng chưa có tài khoản có thể bấm đăng ký, nếu khách hàng nhập sai tài khoản hoặc mật khẩu hệ thống sẽ báo lỗi tài khoản hoặc mật khẩu không hợp lệ
+ 
+Hình 1.2 Giao diện trang đăng nhập
