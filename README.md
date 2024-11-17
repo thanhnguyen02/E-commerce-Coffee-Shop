@@ -81,7 +81,7 @@ Khách hàng truy cập vào website sẽ hiển thị danh sách đồ uống �
 
 ## Giao diện đăng nhập
 Để tiến hành mua hàng tại website khách hàng cần đăng nhập. Nếu khách hàng chưa có tài khoản có thể bấm đăng ký, nếu khách hàng nhập sai tài khoản hoặc mật khẩu hệ thống sẽ báo lỗi tài khoản hoặc mật khẩu không hợp lệ
-<img src="./DEMOPHOTOS/2.png" width="80%"/>
+<img style="text-align: center;" src="./DEMOPHOTOS/2.png" width="70%"/>
 
 ## Giao diện đăng ký
 Giao diện đăng ký cho khách hàng mới, chỉ cần điền các trường tên, email, mật khẩu các thông tin khác có thể bổ sung tại trang thông tin cá nhân khi khách hàng đăng nhập thành công vào website
