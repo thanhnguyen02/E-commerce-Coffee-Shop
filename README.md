@@ -1,3 +1,4 @@
+# The demo images and the introduction in Vietnamese below.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -80,7 +81,7 @@ Khách hàng truy cập vào website sẽ hiển thị danh sách đồ uống �
 
 ## Giao diện đăng nhập
 Để tiến hành mua hàng tại website khách hàng cần đăng nhập. Nếu khách hàng chưa có tài khoản có thể bấm đăng ký, nếu khách hàng nhập sai tài khoản hoặc mật khẩu hệ thống sẽ báo lỗi tài khoản hoặc mật khẩu không hợp lệ
-![](./DEMOPHOTOS/2.png)
+<img src="./DEMOPHOTOS/2.png" width="80%"/>
 
 ## Giao diện đăng ký
 Giao diện đăng ký cho khách hàng mới, chỉ cần điền các trường tên, email, mật khẩu các thông tin khác có thể bổ sung tại trang thông tin cá nhân khi khách hàng đăng nhập thành công vào website
