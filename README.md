@@ -71,7 +71,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-# ẢNH DEMO ĐỒ ÁN TỐT NGHIỆP
+# ẢNH DEMO WEBSITE
 
 ## Giao diện trang chủ
 Khách hàng truy cập vào website sẽ hiển thị danh sách đồ uống đang kinh doanh tại cửa hàng với hơn 50 sản phẩm đồ uống khác nhau được chia theo danh mục
